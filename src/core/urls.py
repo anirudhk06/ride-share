@@ -11,6 +11,7 @@ urlpatterns = [
                     r"^users/",
                     include("apps.users.urls"),
                 ),
+                path("ride/", include("apps.ride.urls")),
             ]
         ),
     ),

@@ -2,7 +2,7 @@ from django.http import HttpRequest
 from django.contrib.auth import authenticate
 from rest_framework.views import APIView
 from django.contrib.auth import get_user_model
-from rest_framework.generics import GenericAPIView, ListAPIView
+from rest_framework.generics import GenericAPIView, ListAPIView, RetrieveAPIView
 from rest_framework import status
 from rest_framework.response import Response
 
@@ -16,7 +16,12 @@ from rest_framework.permissions import (
 from rest_framework_simplejwt.tokens import RefreshToken
 
 
-from .serializers import LoginSerializer, UserRegisterSerializer, UserListSerializer
+from .serializers import (
+    LoginSerializer,
+    UserRegisterSerializer,
+    UserListSerializer,
+    ProfileSerializer,
+)
 
 USER = get_user_model()
 
@@ -60,6 +65,14 @@ class RegisterApi(APIView):
                 "access": str(refresh.access_token),
             }
         )
+
+
+class ProfileAPI(RetrieveAPIView):
+    serializer_class = ProfileSerializer
+
+    def retrieve(self, request: HttpRequest, *args, **kwargs):
+        serializer = self.get_serializer(request.user)
+        return Response(serializer.data)
 
 
 class UserListAPi(ListAPIView):

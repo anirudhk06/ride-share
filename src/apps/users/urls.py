@@ -13,4 +13,5 @@ urlpatterns = [
         ),
     ),
     path("list", views.UserListAPi.as_view()),
+    path("profile", views.ProfileAPI.as_view()),
 ]

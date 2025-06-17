@@ -36,7 +36,20 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = USER
-        fields = ("email", "username", "firstname", "lastname", "password")
+        fields = (
+            "email",
+            "username",
+            "firstname",
+            "lastname",
+            "phone",
+            "password",
+            "is_driver",
+        )
+
+    def validate_phone(self, value) -> str:
+        if not str(value).isdigit():
+            raise ValueError("Invalid phone number")
+        return value
 
     def validate(self, attrs: dict) -> dict:
         self.fields.pop("confirm_password", None)
@@ -84,3 +97,24 @@ class UserListSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         ]
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    timezone = serializers.CharField(source="user_timezone")
+
+    class Meta:
+        model = USER
+        fields = [
+            "id",
+            "email",
+            "username",
+            "firstname",
+            "lastname",
+            "phone",
+            "is_driver",
+            "timezone",
+            "created_at",
+            "updated_at",
+        ]
+
+        read_only_fields = fields

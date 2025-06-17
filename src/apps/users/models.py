@@ -34,6 +34,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_login_time = models.DateTimeField(null=True)
 
     is_bot = models.BooleanField(default=False)
+    is_driver = models.BooleanField(default=False)
 
     user_timezone = models.CharField(
         max_length=255, default="UTC", choices=USER_TIMEZONE_CHOICES

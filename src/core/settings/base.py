@@ -3,6 +3,7 @@ from datetime import timedelta
 LOCAL_APPS = [
     "db",
     "apps.users",
+    "apps.ride",
 ]
 
 INSTALLED_APPS = [
