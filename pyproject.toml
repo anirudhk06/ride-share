@@ -1,0 +1,20 @@
+[project]
+name = "dj-starter-template"
+version = "0.1.0"
+description = "Django Starter Template"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "dj-database-url>=2.3.0",
+    "django-environ>=0.12.0",
+    "django>=5.2.1",
+    "djangorestframework-simplejwt>=5.5.0",
+    "djangorestframework>=3.16.0",
+    "psycopg2-binary>=2.9.10",
+    "pytz>=2025.2",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.11.11",
+]
